@@ -19,10 +19,14 @@ SCCOM = wine sccom
 
 whole_library : $(LIB_WORK)/_lib.qdb
 
-$(LIB_WORK)/_lib.qdb : ../src/fpga/sub_bytes.vhd \
+$(LIB_WORK)/_lib.qdb : ../src/fpga/s_box_ea.vhd \
+		$(IEEE__std_logic_arith) \
+		$(IEEE__std_logic_unsigned) \
+		$(STD__textio) \
+		$(IEEE__std_logic_1164) ../src/fpga/sub_bytes_ea.vhd \
 		$(IEEE__std_logic_arith) \
 		$(IEEE__std_logic_unsigned) \
 		$(STD__textio) \
 		$(IEEE__std_logic_1164)
-	$(VCOM) -2002 -O0 ../src/fpga/sub_bytes.vhd
-
+	$(VCOM) -2002 -O0 ../src/fpga/s_box_ea.vhd
+	$(VCOM) -2002 -O0 ../src/fpga/sub_bytes_ea.vhd
